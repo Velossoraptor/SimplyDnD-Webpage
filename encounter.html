@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simply DnD | Encounter Generator</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/large.css" />
+    <script src="/js/character-generator.js" defer></script>
+  </head>
+
+  <body>
+    <header></header>
+    <main>
+      <div class="category-nav">
+        <img
+          src="/images/simplydndlogo.png"
+          alt="dragon logo"
+          width="50px"
+          height="auto"
+        />
+        <a href="./index.html">Simply DnD</a>
+        <a href="./encounter.html" class="active">Encounter Generator</a>
+        <a href="">Initiative Tracker</a>
+        <a href="">Bookmarks</a>
+        <a href="">Contact Me</a>
+      </div>
+
+      <div class="hero">
+        <!-- Big Welcome image and a get started button -->
+      </div>
+      <h2>Encounter Generator</h2>
+      <section class="character-generator">
+        <div class="container">
+          <h3>Party Details</h3>
+          <form>
+            <fieldset>
+              <label
+                >Average Party Level
+                <input type="number" name="level" id="level"
+              /></label>
+              <label
+                >Party Size<input type="number" name="size" id="size"
+              /></label>
+              <label
+                >Number of Monsters<input type="number" name="size" id="size"
+              /></label>
+            </fieldset>
+          </form>
+        </div>
+        <div class="container">
+          <div id="title-holder">
+            <h3>Add Monsters</h3>
+            <button id="random-encounter">Random Encounter</button>
+          </div>
+
+          <div class="monster-card">
+            <div>
+              <p>Monster Name</p>
+              <p>CR 0 | Creature Type</p>
+            </div>
+          </div>
+          <!--Dynamically generate more monsters-->
+        </div>
+        <div class="container wide-container">
+          <div id="title-holder">
+            <h3>Your Encounter</h3>
+            <button id="clear">Clear</button>
+          </div>
+          <!--List of monsters in the encounter generate dynamically-->
+          <div class="monster-card">
+            <div>
+              <p>Monster Name</p>
+              <p>CR 0 | Creature Type</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="main-footer"></footer>
+  </body>
+</html>

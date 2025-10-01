@@ -34,8 +34,7 @@ main {
   gap: 3em;
 }
 
-.form-container,
-.scores {
+.container {
   background-color: var(--LightCream);
   border-radius: 8px;
   padding: 1em;
@@ -44,6 +43,9 @@ main {
   h3 {
     color: var(--Navy);
   }
+}
+.wide-container {
+    grid-column: 1/ span 3;
 }
 
 form {
@@ -118,6 +120,25 @@ form {
   border-radius: 8px;
   border: 1px solid grey;
   width: 200px;
+  height: 60px;
+  margin: 0.5em auto;
+  perspective: 1000px;
+}
+
+.monster-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+  & p,
+  h4 {
+    padding-left: .5em;
+    margin: 0;
+  }
+  padding: 0.5em;
+  background-color: var(--Cream);
+  border-radius: 8px;
+  border: 1px solid grey;
   height: 60px;
   margin: 0.5em auto;
   perspective: 1000px;
