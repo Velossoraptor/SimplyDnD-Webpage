@@ -1,0 +1,15 @@
+:root {
+    --Red: #822121;
+    --Navy: #003049;
+    --Cream: #f1f0ea;
+    --LightCream: #fbfaf6;
+    --Orange: #f7942b;
+}
+
+* {
+    color: var(--Red);
+}
+
+html {
+    background-color: var(--Cream);
+}

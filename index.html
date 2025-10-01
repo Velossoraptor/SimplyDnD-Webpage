@@ -4,68 +4,175 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simply DnD | Home</title>
-    <!-- <link rel="stylesheet" href="/css/style.css" />
-    <script type="module" src="/js/main.js" defer></script> -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/large.css" />
+    <script src="/js/character-generator.js" defer></script>
   </head>
 
   <body>
     <header></header>
     <main>
       <div class="category-nav">
-        <img src="" alt="dragon logo" />
-        <p>Simply DnD</p>
-        <p>Encounter Generator</p>
-        <p>Initiative Tracker</p>
-        <p>Bookmarks</p>
-        <p>Contact Me</p>
+        <img
+          src="/images/simplydndlogo.png"
+          alt="dragon logo"
+          width="50px"
+          height="auto"
+        />
+        <a href="" class="active">Simply DnD</a>
+        <a href="">Encounter Generator</a>
+        <a href="">Initiative Tracker</a>
+        <a href="">Bookmarks</a>
+        <a href="">Contact Me</a>
       </div>
 
       <div class="hero">
         <!-- Big Welcome image and a get started button -->
       </div>
-
+      <h2>Character Generator</h2>
       <section class="character-generator">
-        <h2>Character Generator</h2>
-        <div>
+        <div class="form-container">
+          <h3>Basic Information</h3>
           <form>
             <fieldset>
-              <legend>Basic Information</legend>
               <label
                 >Character Name
                 <input type="text" name="char-name" id="char-name"
               /></label>
-
               <label
                 >Race<select name="race" id="race">
                   <!--Dynamically generate options-->
                 </select></label
               >
-
               <label
                 >Class<select name="class" id="class">
                   <!--Dynamically generate options-->
                 </select></label
               >
-
               <label
-                >Background<input type="text" name="background" id="background"
-              /></label>
-
+                >Background<select name="background" id="background"></select
+              ></label>
               <label
                 >Level<input type="number" name="level" id="level"
               /></label>
             </fieldset>
           </form>
         </div>
-        <div>
-          <h3>Ability Scores</h3>
-          <button>Roll Stats</button>
-          <div>Strength</div>
-          <div>Dexterity</div>
-          <div>Constitution</div>
-          <div>Intelligence</div>
-          <div>Wisdom</div>
-          <div>Charisma</div>
+        <div class="scores">
+          <div id="title-holder">
+            <h3>Ability Scores</h3>
+            <button id="roll-stats">Roll Stats</button>
+          </div>
+
+          <div class="score-container">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Strength</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Strength</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+            </div>
+          </div>
+          <div class="score-container">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Dexterity</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Dexterity</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+            </div>
+          </div>
+          <div class="score-container">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Constitution</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Constitution</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+            </div>
+          </div>
+          <div class="score-container">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Intelligence</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Intelligence</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+            </div>
+          </div>
+          <div class="score-container">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Wisdom</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Wisdom</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+            </div>
+          </div>
+          <div class="score-container">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Charisma</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+              <div class="flip-card-back">
+                <h4>Charisma</h4>
+                <p class="score">10</p>
+                <p class="mod">+0</p>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="score-container">
+            <h4>Dexterity</h4>
+            <p class="score">10</p>
+            <p class="mod">+0</p>
+          </div>
+          <div class="score-container">
+            <h4>Constitution</h4>
+            <p class="score">10</p>
+            <p class="mod">+0</p>
+          </div>
+          <div class="score-container">
+            <h4>Intelligence</h4>
+            <p class="score">10</p>
+            <p class="mod">+0</p>
+          </div>
+          <div class="score-container">
+            <h4>Wisdom</h4>
+            <p class="score">10</p>
+            <p class="mod">+0</p>
+          </div>
+          <div class="score-container">
+            <h4>Charisma</h4>
+            <p class="score">10</p>
+            <p class="mod">+0</p>
+          </div> -->
         </div>
       </section>
     </main>
