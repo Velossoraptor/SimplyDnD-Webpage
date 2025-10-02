@@ -1,4 +1,4 @@
-main {
+main, header, footer {
   width: 80%;
   margin: 0 auto;
 }
@@ -23,7 +23,7 @@ main {
     background-color: var(--Red);
     color: var(--Cream);
   }
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   border-bottom: solid 1px var(--Orange);
 }
 
@@ -45,7 +45,7 @@ main {
   }
 }
 .wide-container {
-    grid-column: 1/ span 3;
+  grid-column: 1 / span 3;
 }
 
 form {
@@ -63,7 +63,7 @@ form {
   }
 }
 
-#title-holder {
+.title-holder {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -72,9 +72,25 @@ form {
     width: 90px;
   }
 }
+.search-bar {
+  width: 100%;
+  & input[type="search"] {
+    width: 75%;
+    margin: 0 auto;
+  }
+  & select {
+    width: 20%;
+  }
+  & form {
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+  }
+  flex-direction: row;
+}
 
 /* Score Animation */
- .flip-card-inner {
+.flip-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -83,18 +99,20 @@ form {
   transform-style: preserve-3d;
 }
 
- .score-container:hover .flip-card-inner, .score-container.is-flipped .flip-card-inner {
+.score-container:hover .flip-card-inner,
+.score-container.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-} 
+}
 .flip-card-back {
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .score {
@@ -132,7 +150,7 @@ form {
   text-align: left;
   & p,
   h4 {
-    padding-left: .5em;
+    padding-left: 0.5em;
     margin: 0;
   }
   padding: 0.5em;
@@ -144,4 +162,16 @@ form {
   perspective: 1000px;
 }
 
-
+.dice-selector {
+  display: flex;
+  flex-direction: row;
+  & label {
+    flex-direction: row;
+    align-items: center;
+  }
+  & #roll-info{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+  }
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simply DnD | Contact Me</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/large.css" />
+    <script src="./js/character-generator.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+  </head>
+
+  <body>
+    <header>
+      <div class="category-nav">
+        <img
+          src="./images/simplydndlogo.png"
+          alt="dragon logo"
+          width="50px"
+          height="auto"
+        />
+        <a href="./index.html">Simply DnD</a>
+        <a href="./encounter.html">Encounter Generator</a>
+        <a href="./initiative.html">Initiative Tracker</a>
+        <a href="./bookmark.html">Bookmarks</a>
+        <a href="./contact.html" class="active">Contact Me</a>
+      </div>
+    </header>
+    <main>
+      <div class="hero">
+        <!-- Big Welcome image and a get started button -->
+      </div>
+      <h2>Contact Me</h2>
+      <section class="character-generator">
+        <div class="container">
+          <div class="title-holder">
+            <h3>Your Information</h3>
+            <button id="send-message">Send</button>
+          </div>
+          <form>
+            <fieldset>
+              <label
+                >Name* <input type="text" name="name" id="name" required
+              /></label>
+              <label>Email<input type="email" name="email" id="email" /></label>
+              <label
+                >Reason*<select name="reason" id="reason" required>
+                  <option value="web-bug">Website Bug</option>
+                  <option value="feat-req">Feature Request</option>
+                  <option value="question">Question</option>
+                  <option value="other">Other</option>
+                </select></label
+              >
+              <label
+                >Details*<input
+                  type="text"
+                  name="details"
+                  id="details"
+                  required
+              /></label>
+            </fieldset>
+          </form>
+        </div>
+        <div class="container">
+          <div class="title-holder">
+            <h3>Why Contact Me?</h3>
+          </div>
+
+          <div>
+            <p>
+              Fun Fact, this project is run by only One Person - Me!<br />
+              And, as you all know, big projects like these run by small people
+              like me often break or don't meet everyone's standards. I can't
+              think of everything with just one brain! So you can contact me to
+              let me know about:
+            </p>
+            <ul>
+              <li>A bug</li>
+              <li>A new feature you'd like to see</li>
+              <li>Questions?</li>
+              <li>To say 'Good job on ____!"</li>
+            </ul>
+            <p>Thanks for using SimplyDnD :)</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="main-footer"></footer>
+  </body>
+</html>

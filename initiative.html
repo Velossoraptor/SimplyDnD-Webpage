@@ -11,8 +11,7 @@
   </head>
 
   <body>
-    <header></header>
-    <main>
+    <header>
       <div class="category-nav">
         <img
           src="./images/simplydndlogo.png"
@@ -23,37 +22,53 @@
         <a href="./index.html">Simply DnD</a>
         <a href="./encounter.html">Encounter Generator</a>
         <a href="./initiative.html" class="active">Initiative Tracker</a>
-        <a href="">Bookmarks</a>
-        <a href="">Contact Me</a>
+        <a href="./bookmark.html">Bookmarks</a>
+        <a href="./contact.html">Contact Me</a>
       </div>
-
+    </header>
+    <main>
       <div class="hero">
         <!-- Big Welcome image and a get started button -->
       </div>
       <h2>Initiative Tracker</h2>
       <section class="character-generator">
         <div class="container">
-          <div id="title-holder">
+          <div class="title-holder">
             <h3>Add Player to Initiative</h3>
             <button id="add-player">Add</button>
           </div>
           <form>
             <fieldset>
               <label
-                >Character Name <input type="text" name="level" id="level"
+                >Character Name
+                <input type="text" name="char-name" id="char-name"
               /></label>
               <label
-                >Initiative Roll<input type="number" name="size" id="size"
+                >Initiative Roll<input type="number" name="init" id="init"
               /></label>
               <label
-                >Armor Class<input type="number" name="size" id="size"
+                >Armor Class<input type="number" name="ac" id="ac"
               /></label>
             </fieldset>
           </form>
         </div>
         <div class="container">
-          <div id="title-holder">
+          <div class="title-holder">
             <h3>Add Monsters to Initiative</h3>
+          </div>
+          <div class="title-holder search-bar">
+            <form>
+              <select name="category" id="category">
+                <option value="monsters">Monsters</option>
+              </select>
+              <input
+                type="search"
+                placeholder="Search..."
+                name="search"
+                id="search"
+              />
+            </form>
+            <button type="submit" class="search-button">Go!</button>
           </div>
 
           <div class="monster-card">
@@ -65,7 +80,7 @@
           <!--Dynamically generate more monsters-->
         </div>
         <div class="container">
-          <div id="title-holder">
+          <div class="title-holder">
             <h3>Your Initiative</h3>
             <button id="clear">Clear</button>
           </div>
@@ -84,10 +99,52 @@
           </div>
         </div>
         <div class="container">
-          <div id="title-holder">
+          <div class="title-holder">
             <h3>Dice Roller</h3>
             <button id="roll">Roll</button>
           </div>
+          <form class="dice-selector">
+            <fieldset>
+              <label for="no-mod"
+                ><input type="radio" name="no-mod" id="no-mod" checked />No
+                Modifier</label
+              >
+
+              <label for="adv"
+                ><input type="radio" name="adv" id="adv" />Advantage</label
+              >
+
+              <label for="d-adv"
+                ><input
+                  type="radio"
+                  name="d-adv"
+                  id="d-adv"
+                />Disadvantage</label
+              >
+            </fieldset>
+            <fieldset id="roll-info">
+              <label
+                ><input
+                  type="number"
+                  name="num-dice"
+                  id="num-dice"
+                  value="1"
+                  min="1"
+                  max="101"
+              /></label>
+              <label
+                ><select name="dice-type" id="dice-type">
+                  <option value="d4">d4</option>
+                  <option value="d6">d6</option>
+                  <option value="d8">d8</option>
+                  <option value="d10">d10</option>
+                  <option value="d12">d12</option>
+                  <option value="d20">d20</option>
+                  <option value="d100">d100</option>
+                </select></label
+              >
+            </fieldset>
+          </form>
           <!-- Add Dice to be rolled and a selector for number of dice, checkbox for adv/disadv-->
         </div>
       </section>

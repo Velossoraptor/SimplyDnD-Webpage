@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/large.css" />
     <script src="./js/character-generator.js" defer></script>
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
   </head>
 
   <body>
-    <header></header>
-    <main>
+    <header>
       <div class="category-nav">
         <img
           src="./images/simplydndlogo.png"
@@ -23,10 +22,11 @@
         <a href="./index.html" class="active">Simply DnD</a>
         <a href="./encounter.html">Encounter Generator</a>
         <a href="./initiative.html">Initiative Tracker</a>
-        <a href="">Bookmarks</a>
-        <a href="">Contact Me</a>
+        <a href="./bookmark.html">Bookmarks</a>
+        <a href="./contact.html">Contact Me</a>
       </div>
-
+    </header>
+    <main>
       <div class="hero">
         <!-- Big Welcome image and a get started button -->
       </div>
@@ -51,16 +51,17 @@
                 </select></label
               >
               <label
-                >Background<select name="background" id="background"></select
-              ></label>
+                >Background<input type="text" name="background" id="background"
+              /></label>
               <label
                 >Level<input type="number" name="level" id="level"
               /></label>
+              <label>HP<input type="number" name="hp" id="hp" /></label>
             </fieldset>
           </form>
         </div>
         <div class="container">
-          <div id="title-holder">
+          <div class="title-holder">
             <h3>Ability Scores</h3>
             <button id="roll-stats">Roll Stats</button>
           </div>
@@ -148,6 +149,25 @@
                 <p class="mod">+0</p>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="container wide-container">
+          <div class="title-holder search-bar">
+            <form>
+              <select name="category" id="category">
+                <option value="classes">Classes</option>
+                <option value="features">Features</option>
+                <option value="spells">Spells</option>
+                <option value="races">Races</option>
+              </select>
+              <input
+                type="search"
+                placeholder="Search..."
+                name="search"
+                id="search"
+              />
+            </form>
+            <button type="submit" class="search-button">Go!</button>
           </div>
         </div>
       </section>
