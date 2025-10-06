@@ -1,177 +1,56 @@
-main, header, footer {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.category-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 100%;
-  font-style: bold;
-  & a {
-    text-decoration: none;
-    font-size: 1.3em;
-    border-radius: 8px;
-    padding: 0.5rem;
-  }
-  & a:hover {
-    background-color: var(--Orange);
-    color: var(--Navy);
-  }
-  & .active {
-    background-color: var(--Red);
-    color: var(--Cream);
-  }
-  padding-bottom: 0.5em;
-  border-bottom: solid 1px var(--Orange);
-}
-
-.character-generator {
-  display: grid;
-  /* grid-auto-rows: 1fr 1fr; */
-  grid-template-columns: 1fr 1fr;
-  gap: 3em;
-}
-
-.container {
-  background-color: var(--LightCream);
-  border-radius: 8px;
-  padding: 1em;
-  color: var(--Navy);
-  & form label,
-  h3 {
-    color: var(--Navy);
-  }
-}
-.wide-container {
-  grid-column: 1 / span 3;
-}
-
-form {
-  & fieldset {
-    border: none;
-  }
-  & label {
-    display: flex;
-    flex-direction: column;
-    padding-top: 1em;
-  }
-  & input,
-  select {
-    height: 45px;
-  }
-}
-
-.title-holder {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  & button {
-    height: 45px;
-    width: 90px;
-  }
-}
-.search-bar {
-  width: 100%;
-  & input[type="search"] {
-    width: 75%;
+@media (min-width: 655px) {
+  main,
+  header,
+  footer {
+    width: 80%;
     margin: 0 auto;
   }
-  & select {
-    width: 20%;
+
+  #hamburger {
+    display: none;
   }
-  & form {
+
+  .category-nav {
+    display: flex !important; /* override grid */
+    flex-direction: row;
     justify-content: space-evenly;
-    flex-direction: row;
-    width: 100%;
-  }
-  flex-direction: row;
-}
-
-/* Score Animation */
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.score-container:hover .flip-card-inner,
-.score-container.is-flipped .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
-.flip-card-back {
-  transform: rotateY(180deg);
-}
-
-.score {
-  font-style: bold;
-  font-size: 1.2em;
-}
-.mod {
-  font-style: italic;
-  font-size: 0.8em;
-}
-.score-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  & p,
-  h4 {
-    padding: 0;
-    margin: 0 auto;
-  }
-  padding: 0.5em;
-  background-color: var(--Cream);
-  border-radius: 8px;
-  border: 1px solid grey;
-  width: 200px;
-  height: 60px;
-  margin: 0.5em auto;
-  perspective: 1000px;
-}
-
-.monster-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: left;
-  & p,
-  h4 {
-    padding-left: 0.5em;
-    margin: 0;
-  }
-  padding: 0.5em;
-  background-color: var(--Cream);
-  border-radius: 8px;
-  border: 1px solid grey;
-  height: 60px;
-  margin: 0.5em auto;
-  perspective: 1000px;
-}
-
-.dice-selector {
-  display: flex;
-  flex-direction: row;
-  & label {
-    flex-direction: row;
     align-items: center;
+    width: 100%;
+    font-style: bold;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    padding-bottom: 0.5em;
+    border-bottom: solid 1px var(--Orange);
+    transition: none; /* stop animation on large screens */
+    & a {
+      text-decoration: none;
+      font-size: 1.3em;
+      border-radius: 8px;
+      padding: 0.5rem;
+    }
+    & a:hover {
+      background-color: var(--Orange);
+      color: var(--Navy);
+    }
+    & .active {
+      background-color: var(--Red);
+      color: var(--Cream);
+    }
+    padding-bottom: 0.5em;
+    border-bottom: solid 1px var(--Orange);
   }
-  & #roll-info{
-    display: flex;
-    flex-direction: row;
-    align-items: start;
+
+  .character-generator {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3em;
+  }
+
+  .container {
+    margin-bottom: 0;
+  }
+  .wide-container {
+    grid-column: 1 / span 3;
   }
 }

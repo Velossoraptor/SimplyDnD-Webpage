@@ -1,15 +1,209 @@
 :root {
-    --Red: #822121;
-    --Navy: #003049;
-    --Cream: #f1f0ea;
-    --LightCream: #fbfaf6;
-    --Orange: #f7942b;
+  --Red: #822121;
+  --Navy: #003049;
+  --Cream: #f1f0ea;
+  --LightCream: #fbfaf6;
+  --Orange: #f7942b;
 }
 
 * {
-    color: var(--Red);
+  color: var(--Red);
 }
 
 html {
-    background-color: var(--Cream);
+  background-color: var(--Cream);
+}
+
+.category-nav {
+  max-height: 0;
+  overflow: hidden;
+  display: grid;
+  text-align: center;
+  align-content: center;
+  transition: max-height 0.5s ease-in-out;
+  & a {
+    text-decoration: none;
+    font-size: 1.3em;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  & .active {
+    background-color: var(--Red);
+    color: var(--Cream);
+  }
+  padding-bottom: 0.5em;
+  border-bottom: solid 1px var(--Orange);
+}
+
+.category-nav.open {
+  max-height: 500px;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: max-height 0.5s ease-in-out;
+}
+
+/* Hamburger Settings */
+
+#hamburger {
+  font-size: 1.5rem;
+  border: 0;
+  background: none;
+  color: #ffffff;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: block;
+  cursor: pointer;
+}
+
+#hamburger::before {
+  content: "☰";
+  color: white !important;
+}
+
+#hamburger.open::before {
+  content: "❌";
+}
+
+/* End Hamburger Settings */
+
+.container {
+  background-color: var(--LightCream);
+  border-radius: 8px;
+  padding: 1em;
+  color: var(--Navy);
+  & form label,
+  h3 {
+    color: var(--Navy);
+  }
+  margin-bottom: 2em;
+}
+
+form {
+  & fieldset {
+    border: none;
+  }
+  & label {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+  }
+  & input,
+  select {
+    height: 45px;
+  }
+}
+
+.title-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & button {
+    height: 45px;
+    width: 90px;
+  }
+}
+
+.search-bar {
+  width: 100%;
+  & input[type="search"] {
+    width: 75%;
+    margin: 0 auto;
+  }
+  & select {
+    width: 20%;
+  }
+  & form {
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+  }
+  flex-direction: row;
+}
+
+/* Score Animation */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.score-container.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+/* End Score Animation */
+
+.score {
+  font-style: bold;
+  font-size: 1.2em;
+}
+.mod {
+  font-style: italic;
+  font-size: 0.8em;
+}
+.score-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  & p,
+  h4 {
+    padding: 0;
+    margin: 0 auto;
+  }
+  padding: 0.5em;
+  background-color: var(--Cream);
+  border-radius: 8px;
+  border: 1px solid grey;
+  width: 200px;
+  height: 60px;
+  margin: 0.5em auto;
+  perspective: 1000px;
+}
+
+.monster-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: left;
+  & p,
+  h4 {
+    padding-left: 0.5em;
+    margin: 0;
+  }
+  padding: 0.5em;
+  background-color: var(--Cream);
+  border-radius: 8px;
+  border: 1px solid grey;
+  height: 60px;
+  margin: 0.5em auto;
+  perspective: 1000px;
+}
+
+.dice-selector {
+  display: flex;
+  flex-direction: row;
+  & label {
+    flex-direction: row;
+    align-items: center;
+  }
+  & #roll-info {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+  }
 }

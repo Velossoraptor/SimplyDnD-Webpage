@@ -6,13 +6,13 @@
     <title>Simply DnD | Encounter Generator</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/large.css" />
-    <!-- <script src="/js/character-generator.js" defer></script> -->
+    <script src="./js/transitions.js" defer></script>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
   </head>
 
   <body>
-    <header></header>
-    <main>
+    <header>
+      <button id="hamburger" aria-label="hamburger menu toggle"></button>
       <div class="category-nav">
         <img
           src="./images/simplydndlogo.png"
@@ -26,7 +26,8 @@
         <a href="./bookmark.html">Bookmarks</a>
         <a href="./contact.html">Contact Me</a>
       </div>
-
+    </header>
+    <main>
       <div class="hero">
         <!-- Big Welcome image and a get started button -->
       </div>
@@ -44,7 +45,7 @@
                 >Party Size<input type="number" name="size" id="size"
               /></label>
               <label
-                >Number of Monsters<input type="number" name="size" id="size"
+                >Number of Monsters<input type="number" name="num-mon" id="num-mon"
               /></label>
             </fieldset>
           </form>
