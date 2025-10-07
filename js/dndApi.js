@@ -111,7 +111,7 @@ function displayDataDetails(data, category, displayCard) {
     }
     displayCard.innerHTML = `
     <div>
-        <<p>${data.name}</p>
+        <p>${data.name}</p>
         <p>${attack} ${data.school.name} | Level ${data.level} | Duration ${data.duration} | C ${conc}</p>
         <p>"${data.desc}"</p>
     </div>
