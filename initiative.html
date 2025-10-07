@@ -6,7 +6,7 @@
     <title>Simply DnD | Initiative Tracker</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/large.css" />
-    <script src="./js/transitions.js" defer></script>
+    <script type="module" src="./js/initiative.js" defer></script>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
   </head>
 
@@ -72,11 +72,8 @@
             <button type="submit" class="search-button">Go!</button>
           </div>
 
-          <div class="monster-card">
-            <div>
-              <p>Monster Name</p>
-              <p>CR 0 | Creature Type</p>
-            </div>
+          <div class="results short-results">
+            <p>Search for monsters for results to appear!</p>
           </div>
           <!--Dynamically generate more monsters-->
         </div>

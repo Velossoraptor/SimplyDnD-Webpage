@@ -219,6 +219,10 @@ form {
   overflow: auto;
 }
 
+.short-results{
+    max-height: 250px;
+}
+
 .expanded {
   & p {
     margin-bottom: 0.5em;
