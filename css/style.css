@@ -48,7 +48,7 @@ html {
   font-size: 1.5rem;
   border: 0;
   background: none;
-  color: #ffffff;
+  color: var(--Navy);
   position: fixed;
   top: 1rem;
   right: 1rem;
