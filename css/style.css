@@ -181,7 +181,7 @@ form {
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  &div{
+  &div {
     flex-direction: column;
     justify-content: space-around;
   }
@@ -214,17 +214,24 @@ form {
   }
 }
 
-.results{
-    max-height: 700px;
-    overflow: auto;
+.results {
+  max-height: 700px;
+  overflow: auto;
 }
 
 .expanded {
-    & p{
-        margin-bottom: .5em;
-    }
+  & p {
+    margin-bottom: 0.5em;
+  }
 }
 .bookmark-button {
-    height: 48px;
-    width: 48px;
+  height: 48px;
+  width: 48px;
+  background-image: url(../images/bookmark-add.svg);
+  background-repeat: no-repeat;
+  background-size: contain; /* or cover / specific size */
+  background-position: center;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }

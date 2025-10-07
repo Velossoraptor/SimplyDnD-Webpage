@@ -46,7 +46,7 @@ function displayDataGeneral(results, category, displayResults) {
     const card = document.createElement("div");
     card.innerHTML = `<div class="monster-card">
               <p>${item.name}</p>
-              <button class="bookmark-button">➕</button>
+              <button class="bookmark-button"></button>
             </div>`;
     displayResults.appendChild(card);
 
@@ -55,7 +55,7 @@ function displayDataGeneral(results, category, displayResults) {
       if (card.classList.contains("expanded")) {
         card.innerHTML = `
               <p>${item.name}</p>
-              <button class="bookmark-button">➕</button>
+              <button class="bookmark-button"></button>
             `;
       } else {
         await getDataDetails(category, item.index, card);
@@ -95,7 +95,7 @@ function displayDataDetails(data, category, displayCard) {
         <p>${data.size} ${data.type} | CR ${data.challenge_rating} | AC ${data.armor_class.value} | XP ${data.xp}</p>
         <p>HP: ${data.hit_points} | Speed: Walk ${data.speed.walk}</p>
     <div>
-    <button class="bookmark-button">➕</button>
+    <button class="bookmark-button"></button>
     `;
   } else if (category === "spells") {
     let conc = "";
@@ -115,7 +115,7 @@ function displayDataDetails(data, category, displayCard) {
         <p>${attack} ${data.school.name} | Level ${data.level} | Duration ${data.duration} | C ${conc}</p>
         <p>"${data.desc}"</p>
     </div>
-    <button class="bookmark-button">➕</button>
+    <button class="bookmark-button"></button>
     `;
   } else if (category === "features") {
     displayCard.innerHTML = `
@@ -124,7 +124,7 @@ function displayDataDetails(data, category, displayCard) {
         <p>${data.class.name} | Level ${data.level}</p>
         <p>"${data.desc}"</p>
     </div>
-    <button class="bookmark-button">➕</button>
+    <button class="bookmark-button"></button>
     `;
   } else if (category === "races") {
     const details = [
@@ -141,7 +141,7 @@ function displayDataDetails(data, category, displayCard) {
         <p>Speed ${data.speed} | ${data.size}</p>
         <p>"${details.join("<br><br>")}"</p>
     </div>
-    <button class="bookmark-button">➕</button>
+    <button class="bookmark-button"></button>
     `;
   } else if (category === "classes") {
     displayCard.innerHTML = `
@@ -151,7 +151,7 @@ function displayDataDetails(data, category, displayCard) {
         <p>Proficiencies: ${data.proficiency_choices[0].desc}</p>
         <p>Starting Equipment: ${data.starting_equipment_options[0].desc}</p>
     </div>
-    <button class="bookmark-button">➕</button>
+    <button class="bookmark-button"></button>
     `;
   }
   displayCard.classList.add("monster-card");
