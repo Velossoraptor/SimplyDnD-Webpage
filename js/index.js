@@ -4,7 +4,7 @@ const displayResults = document.querySelector(".results");
 const searchButton = document.querySelector(".search-button");
 const searchInput = document.getElementById("search");
 
-searchInput.addEventListener("keydown", async (e)=>{
+searchInput.addEventListener("input", async (e)=>{
         // e.preventDefault();
         if(e.key === "Enter"){
             e.preventDefault();
