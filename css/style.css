@@ -177,9 +177,14 @@ form {
 
 .monster-card {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   text-align: left;
+  &div{
+    flex-direction: column;
+    justify-content: space-around;
+  }
   & p,
   h4 {
     padding-left: 0.5em;
@@ -189,7 +194,8 @@ form {
   background-color: var(--Cream);
   border-radius: 8px;
   border: 1px solid grey;
-  height: 60px;
+  min-height: 60px;
+  max-height: auto;
   margin: 0.5em auto;
   perspective: 1000px;
 }
@@ -206,4 +212,19 @@ form {
     flex-direction: row;
     align-items: start;
   }
+}
+
+.results{
+    max-height: 700px;
+    overflow: auto;
+}
+
+.expanded {
+    & p{
+        margin-bottom: .5em;
+    }
+}
+.bookmark-button {
+    height: 48px;
+    width: 48px;
 }
