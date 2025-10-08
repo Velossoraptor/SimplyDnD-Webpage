@@ -239,3 +239,13 @@ form {
   background-color: transparent;
   cursor: pointer;
 }
+.add-list-button {
+    height: 48px;
+    width: 48px;
+    & ::before{
+        content: "+";
+    }
+    content: "+";
+    font-size: 2em;
+    cursor: pointer;
+}

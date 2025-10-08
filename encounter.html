@@ -28,24 +28,28 @@
       </div>
     </header>
     <main>
-      <div class="hero">
-        <!-- Big Welcome image and a get started button -->
-      </div>
       <h2>Encounter Generator</h2>
       <section class="character-generator">
         <div class="container">
-          <h3>Party Details</h3>
+          <div class="title-holder">
+            <h3>Party Details</h3>
+            <button id="random-encounter">Random Encounter</button>
+          </div>
           <form>
             <fieldset>
               <label
                 >Average Party Level
-                <input type="number" name="level" id="level"
+                <input type="number" name="level" id="level" value="1"
               /></label>
               <label
-                >Party Size<input type="number" name="size" id="size"
+                >Party Size<input type="number" name="size" id="size" value="4"
               /></label>
               <label
-                >Number of Monsters<input type="number" name="num-mon" id="num-mon"
+                >Number of Monsters<input
+                  type="number"
+                  name="num-mon"
+                  id="num-mon"
+                  value="1"
               /></label>
             </fieldset>
           </form>
@@ -53,7 +57,6 @@
         <div class="container">
           <div class="title-holder">
             <h3>Add Monsters</h3>
-            <button id="random-encounter">Random Encounter</button>
           </div>
           <div class="title-holder search-bar">
             <form>
@@ -71,7 +74,7 @@
           </div>
 
           <div class="results short-results">
-            <p>Search for monsters for results to appear!</p>
+            <p>Search for monsters results to appear!</p>
           </div>
           <!--Dynamically generate more monsters-->
         </div>
@@ -80,12 +83,9 @@
             <h3>Your Encounter</h3>
             <button id="clear">Clear</button>
           </div>
-          <!--List of monsters in the encounter generate dynamically-->
-          <div class="monster-card">
-            <div>
-              <p>Monster Name</p>
-              <p>CR 0 | Creature Type</p>
-            </div>
+          <div id="encounter-list">
+            <p id="default-message">Your encounter will appear here!</p>
+            <!--Dynamically Generated-->
           </div>
         </div>
       </section>
