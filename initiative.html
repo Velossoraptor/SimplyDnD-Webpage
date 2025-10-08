@@ -39,13 +39,21 @@
             <fieldset>
               <label
                 >Character Name
-                <input type="text" name="char-name" id="char-name"
+                <input
+                  type="text"
+                  name="char-name"
+                  id="char-name"
+                  value="Bob Human"
               /></label>
               <label
-                >Initiative Roll<input type="number" name="init" id="init"
+                >Initiative Roll<input
+                  type="number"
+                  name="init"
+                  id="init"
+                  value="10"
               /></label>
               <label
-                >Armor Class<input type="number" name="ac" id="ac"
+                >Armor Class<input type="number" name="ac" id="ac" value="12"
               /></label>
             </fieldset>
           </form>
@@ -70,7 +78,9 @@
           </div>
 
           <div class="results short-results">
-            <p>Search for monsters for results to appear!</p>
+            <p id="default-message">
+              Search for monsters for results to appear!
+            </p>
           </div>
           <!--Dynamically generate more monsters-->
         </div>
@@ -79,18 +89,11 @@
             <h3>Your Initiative</h3>
             <button id="clear">Clear</button>
           </div>
-          <!--List of monsters/characters in the initiative generate dynamically-->
-          <div class="monster-card">
-            <div>
-              <p>Monster Name</p>
-              <p>Init 21 | CR 0 | Creature Type</p>
-            </div>
-          </div>
-          <div class="monster-card">
-            <div>
-              <p>Character Name</p>
-              <p>Init 20 | AC 10</p>
-            </div>
+
+          <div id="encounter-list">
+            <p id="default-message">
+              Add Character and Monsters to your initiative!
+            </p>
           </div>
         </div>
         <div class="container">
@@ -129,17 +132,29 @@
               /></label>
               <label
                 ><select name="dice-type" id="dice-type">
-                  <option value="d4">d4</option>
-                  <option value="d6">d6</option>
-                  <option value="d8">d8</option>
-                  <option value="d10">d10</option>
-                  <option value="d12">d12</option>
-                  <option value="d20">d20</option>
-                  <option value="d100">d100</option>
+                  <option value="4">d4</option>
+                  <option value="6">d6</option>
+                  <option value="8">d8</option>
+                  <option value="10">d10</option>
+                  <option value="12">d12</option>
+                  <option value="20">d20</option>
+                  <option value="100">d100</option>
                 </select></label
               >
+              <label>
+                +
+                <input type="number" name="modifier" id="modifier" value=0 max="30">
+              </label>
             </fieldset>
           </form>
+          <div class="title-holder">
+              <p class="default-message">Roll history</p>
+              <button id="clear-rolls">Clear</button>
+            </div>
+          <div class="roll-history">
+            
+            
+          </div>
           <!-- Add Dice to be rolled and a selector for number of dice, checkbox for adv/disadv-->
         </div>
       </section>

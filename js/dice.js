@@ -1,5 +1,5 @@
 export function rollDice(sides, number, modifier = 0) {
-    let results = {
+    const results = {
         "rolls": [],
         "total": 0,
         "modifier": modifier
@@ -7,7 +7,7 @@ export function rollDice(sides, number, modifier = 0) {
   for (let i = 0; i < number; i++) {
     const roll = Math.floor(Math.random() * sides) + 1;
     results["rolls"].push(roll);
-    results["total"] += roll;
+    results.total += roll;
   }
   results["total"] += modifier;
   return results;
