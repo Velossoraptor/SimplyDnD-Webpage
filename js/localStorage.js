@@ -40,6 +40,7 @@ export function saveCharacter(
   console.log("character added");
 }
 
+// Saves an encounter to localstorage
 export function saveEncounter(level, size, number, monsters = []){
     const encounters = getLocalStorage("encounters") || [];
     const newEncounter = {
@@ -53,6 +54,7 @@ export function saveEncounter(level, size, number, monsters = []){
     console.log("encounter added");
 }
 
+// Saves an init to localstorage
 export function saveInitiative(initOrder){
     const initiatives = getLocalStorage("initiatives") || [];
     const newInit = initOrder;
@@ -61,7 +63,7 @@ export function saveInitiative(initOrder){
 }
 
 
-//To be implemented after project submission, sorry graders :P
+//To be implemented if I have time, sorry graders :P
 // export function saveClass(){
 
 // }

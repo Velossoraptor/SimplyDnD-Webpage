@@ -129,6 +129,7 @@ clearRolls.addEventListener("click", (e)=>{
   rollHistory.innerHTML = "";
 });
 
+// Adds current initiative to local storage bookmarks
 saveInit.addEventListener("click", (e)=>{
   const initiative = getLocalStorage("current-init");
   saveInitiative(initiative);

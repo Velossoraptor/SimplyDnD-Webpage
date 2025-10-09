@@ -1,5 +1,6 @@
 import { setLocalStorage } from "./localStorage.js";
 
+// Rolls a dice with a number of sides, a number of times, and adds the modifier
 export function rollDice(sides, number, modifier = 0) {
     const results = {
         "rolls": [],
@@ -15,6 +16,8 @@ export function rollDice(sides, number, modifier = 0) {
   return results;
 }
 
+
+// Specifically rolls dice for a stat generator
 export function rollStats(){
     let stats = [];
     for (let i = 0; i<6; i++){
@@ -31,6 +34,7 @@ export function rollStats(){
     return stats;
 }
 
+// Specifically calculates ability modifiers for stat scores
 export function calculateModifier(score){
         let mod = Math.floor((score - 10) / 2);
         if(mod >= 0){

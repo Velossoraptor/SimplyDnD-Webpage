@@ -11,6 +11,7 @@ const characterForm = document.querySelector("form");
 generateOptions("races", characterForm.elements["race"]);
 generateOptions("classes", characterForm.elements["class"]);
 
+// Listens for input on search elements and updates results
 searchInput.addEventListener("input", async (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
@@ -65,6 +66,7 @@ if (document.querySelector("#roll-stats") !== null) {
   });
 }
 
+// Saves character on click
 saveChar.addEventListener("click", (e) => {
   const name = characterForm.elements["char-name"].value;
   const race = characterForm.elements["race"].value;
@@ -76,6 +78,7 @@ saveChar.addEventListener("click", (e) => {
   saveCharacter(name, race, charClass, background, level, hp, scores);
 });
 
+// Generates the options for the character generator
 async function generateOptions(category, dropDown) {
   const options = await returnDataGeneral(category);
   options.forEach((option) => {

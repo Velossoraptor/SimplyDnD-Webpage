@@ -67,11 +67,14 @@ clearButton.addEventListener("click", (e) => {
     '<p id="default-message">Your encounter will appear here!</p>';
 });
 
+// Generates random encounter
 randomButton.addEventListener("click", async (e) => {
   const number = form.elements["num-mon"].value;
   await getRandomMonsters(number, encounterList, context);
 });
 
+
+// Saves encounter
 saveEncounterButton.addEventListener("click", (e) => {
   const level = form.elements["level"].value;
   const size = form.elements["size"].value;

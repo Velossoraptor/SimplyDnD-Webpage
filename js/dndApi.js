@@ -211,7 +211,7 @@ function displayDataDetails(data, category, displayCard, context) {
 }
 
 
-// Specific for generating options
+// Specific for generating options, returns data raw instead of displaying it
 export async function returnDataGeneral(category) {
   try {
     const response = await fetch(url + category);
@@ -230,6 +230,7 @@ export async function returnDataGeneral(category) {
     console.log(error);
   }
 }
+
 export async function returnDataByQuery(category, query) {
   try {
     const response = await fetch(url + category + "/" + query);
