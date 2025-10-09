@@ -252,7 +252,7 @@ form {
   font-size: 2em;
   cursor: pointer;
 }
-.save {
+.save, .download {
   margin-right: 2em;
   margin-top: 0.8em;
 }

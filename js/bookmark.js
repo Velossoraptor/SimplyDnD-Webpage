@@ -4,8 +4,13 @@ let encounters = getLocalStorage("encounters") || [];
 let initiatives = getLocalStorage("initiatives") || [];
 const results = document.querySelector(".results");
 
+const download = document.querySelector(".download");
+// Implement if I have time
+// const importBookmarks = document.querySelector(".import");
+
 const category = document.querySelector("#category");
 const searchButton = document.querySelector(".search-button");
+
 category.addEventListener("input", (e) => {
   characters = getLocalStorage("characters") || [];
   encounters = getLocalStorage("encounters") || [];
@@ -136,3 +141,28 @@ function displayInit() {
     results.appendChild(container);
   });
 }
+
+function downloadTextFile(filename, text) {
+  const blob = new Blob([text], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url); // Clean up the URL object
+}
+
+download.addEventListener("click", (e)=>{
+  const data = {
+    characters: getLocalStorage("characters") || [],
+    encounters: getLocalStorage("encounters") || [],
+    initiatives: getLocalStorage("initiatives") || [],
+  };
+
+  // Turn the object into a formatted JSON string
+  const jsonText = JSON.stringify(data, null, 2);
+
+  downloadTextFile("SimplyDnDBookmarks.txt", jsonText);
+})
