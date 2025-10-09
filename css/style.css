@@ -212,7 +212,7 @@ form {
     flex-direction: row;
     align-items: start;
   }
-  & input[type=number]{
+  & input[type="number"] {
     width: 48px;
   }
 }
@@ -222,8 +222,8 @@ form {
   overflow: auto;
 }
 
-.short-results{
-    max-height: 250px;
+.short-results {
+  max-height: 250px;
 }
 
 .expanded {
@@ -243,16 +243,21 @@ form {
   cursor: pointer;
 }
 .add-list-button {
-    height: 48px;
-    width: 48px;
-    & ::before{
-        content: "+";
-    }
+  height: 48px;
+  width: 48px;
+  & ::before {
     content: "+";
-    font-size: 2em;
-    cursor: pointer;
+  }
+  content: "+";
+  font-size: 2em;
+  cursor: pointer;
 }
 .save {
-    margin-right: 2em;
-    margin-top: .8em;
+  margin-right: 2em;
+  margin-top: 0.8em;
+}
+.clear{
+    width: 48px;
+    height: 48px;
+    font-size: 1.5em;
 }
