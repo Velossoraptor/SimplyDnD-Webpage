@@ -1,4 +1,4 @@
-import { getDataGeneral, getDataByQuery } from "./dndApi.js";
+import { getDataGeneral, getDataByQuery, returnDataGeneral } from "./dndApi.js";
 import { rollStats, calculateModifier } from "./dice.js";
 import { saveCharacter, getLocalStorage } from "./localStorage.js";
 
@@ -8,6 +8,8 @@ const searchInput = document.getElementById("search");
 
 const saveChar = document.querySelector(".save");
 const characterForm = document.querySelector("form");
+generateOptions("races", characterForm.elements["race"]);
+generateOptions("classes", characterForm.elements["class"]);
 
 searchInput.addEventListener("input", async (e) => {
   if (e.key === "Enter") {
@@ -73,3 +75,13 @@ saveChar.addEventListener("click", (e) => {
   const scores = getLocalStorage("current-char-scores");
   saveCharacter(name, race, charClass, background, level, hp, scores);
 });
+
+async function generateOptions(category, dropDown) {
+  const options = await returnDataGeneral(category);
+  options.forEach((option) => {
+    const newOption = document.createElement("option");
+    newOption.value = option.index;
+    newOption.innerHTML = option.name;
+    dropDown.appendChild(newOption);
+  });
+}
