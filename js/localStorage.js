@@ -1,0 +1,71 @@
+// Read data from local storage
+export function getLocalStorage(key) {
+  const data = localStorage.getItem(key); // get the data in the key
+  try {
+    // try to parse the data...if none is found, return an empty array
+    const parsed = data ? JSON.parse(data) : [];
+    return Array.isArray(parsed) ? parsed : []; // return parsed data if it's an array
+  } catch {
+    return [];
+  }
+}
+
+// Save data to local storage
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// Saves a character to local storage
+export function saveCharacter(
+  name,
+  race,
+  charClass,
+  background,
+  level,
+  hp,
+  scores = [],
+) {
+  const characters = getLocalStorage("characters") || [];
+  const newCharacter = {
+    name: name,
+    race: race,
+    class: charClass,
+    background: background,
+    level: level,
+    hp: hp,
+    scores: scores,
+  };
+  characters.push(newCharacter);
+  setLocalStorage("characters", characters);
+  console.log("character added");
+}
+
+export function saveEncounter(){
+
+}
+
+export function saveInitiative(){
+
+}
+
+
+//To be implemented after project submission, sorry graders :P
+// export function saveClass(){
+
+// }
+
+// export function saveFeature(){
+
+// }
+
+// export function saveSpell(){
+
+// }
+
+// export function saveRace(){
+
+// }
+
+// export function saveMonster(){
+
+// }

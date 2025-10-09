@@ -1,3 +1,5 @@
+import { setLocalStorage } from "./localStorage.js";
+
 export function rollDice(sides, number, modifier = 0) {
     const results = {
         "rolls": [],
@@ -25,6 +27,7 @@ export function rollStats(){
         // Sum remaining rolls and add to stat array
         stats.push(roll.reduce((a,b)=>a+b));
     }
+    setLocalStorage("current-char-scores", stats);
     return stats;
 }
 

@@ -1,9 +1,13 @@
 import { getDataGeneral, getDataByQuery } from "./dndApi.js";
 import { rollStats, calculateModifier } from "./dice.js";
+import { saveCharacter, getLocalStorage } from "./localStorage.js";
 
 const displayResults = document.querySelector(".results");
 const searchButton = document.querySelector(".search-button");
 const searchInput = document.getElementById("search");
+
+const saveChar = document.querySelector(".save");
+const characterForm = document.querySelector("form");
 
 searchInput.addEventListener("input", async (e) => {
   if (e.key === "Enter") {
@@ -58,3 +62,14 @@ if (document.querySelector("#roll-stats") !== null) {
     });
   });
 }
+
+saveChar.addEventListener("click", (e) => {
+  const name = characterForm.elements["char-name"].value;
+  const race = characterForm.elements["race"].value;
+  const charClass = characterForm.elements["class"].value;
+  const background = characterForm.elements["background"].value;
+  const level = characterForm.elements["level"].value;
+  const hp = characterForm.elements["hp"].value;
+  const scores = getLocalStorage("current-char-scores");
+  saveCharacter(name, race, charClass, background, level, hp, scores);
+});
