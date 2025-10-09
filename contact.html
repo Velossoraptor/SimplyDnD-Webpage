@@ -6,7 +6,17 @@
     <title>Simply DnD | Contact Me</title>
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/large.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      window.onload = function () {
+        emailjs.init("ngsNZVBTMgIbs0Ysa");
+      };
+    </script>
     <script src="./js/transitions.js" defer></script>
+    <script src="./js/contact.js" defer></script>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
   </head>
 
@@ -33,14 +43,26 @@
         <div class="container">
           <div class="title-holder">
             <h3>Your Information</h3>
-            <button id="send-message">Send</button>
+            <!-- <button id="send-message">Send</button> -->
           </div>
           <form>
             <fieldset>
               <label
-                >Name* <input type="text" name="name" id="name" autocomplete="name" required
+                >Name*
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  autocomplete="name"
+                  required
               /></label>
-              <label>Email<input type="email" name="email" id="email" autocomplete="email" /></label>
+              <label
+                >Email<input
+                  type="email"
+                  name="email"
+                  id="email"
+                  autocomplete="email"
+              /></label>
               <label
                 >Reason*<select name="reason" id="reason" required>
                   <option value="web-bug">Website Bug</option>
@@ -57,6 +79,7 @@
                   required
               /></label>
             </fieldset>
+            <input type="submit" value="Send Message" id="send-message">
           </form>
         </div>
         <div class="container">

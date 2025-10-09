@@ -42,5 +42,9 @@
   "bugs": {
     "url": "https://github.com/Velossoraptor/SimplyDnD-Webpage/issues"
   },
-  "homepage": "https://github.com/Velossoraptor/SimplyDnD-Webpage#readme"
+  "homepage": "https://github.com/Velossoraptor/SimplyDnD-Webpage#readme",
+  "dependencies": {
+    "form-data": "^4.0.4",
+    "mailgun.js": "^12.1.0"
+  }
 }
