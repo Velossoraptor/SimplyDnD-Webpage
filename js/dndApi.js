@@ -1,3 +1,5 @@
+import { getLocalStorage, setLocalStorage } from "./localStorage.js";
+
 const url = "https://www.dnd5eapi.co/api/2014/";
 
 // GET FUNCTIONS
@@ -75,14 +77,17 @@ export async function getRandomMonsters(number, displayResults, context = "bookm
   try {
     const response = await fetch(url + category);
     if(response.ok){
+      const monsters = getLocalStorage("current-encounter-monsters") || [];
       const data = await response.json();
       const results = data.results;
       const randomResults = [];
       for(let i = 0; i<number; i++){
         const randomIndex = Math.floor(Math.random() * results.length);
+        monsters.push(results[randomIndex].index);
         randomResults.push(results[randomIndex]);
-        displayDataGeneral(randomResults, category, displayResults, context);
+        displayDataGeneral(randomResults, category, displayResults);
       }
+      setLocalStorage("current-encounter-monsters", monsters)
     }
   }catch (error){
     console.log(error);
@@ -92,13 +97,16 @@ export async function getRandomMonsters(number, displayResults, context = "bookm
 // DISPLAY FUNCTIONS
 
 // Displays the name of all the data in the selected category and adds a toggle to show details or back to basics
-function displayDataGeneral(results, category, displayResults, context) {
+function displayDataGeneral(results, category, displayResults, context = "") {
   displayResults.innerHTML = "";
   let buttonContent = "";
   if(context === "add-list"){
     buttonContent = "+";
   }
   let buttonHTML = `<button class="${context}-button">${buttonContent}</button>`;
+  if(context === ""){
+    buttonHTML = "";
+  }
 
   results.forEach((item) => {
     const card = document.createElement("div");

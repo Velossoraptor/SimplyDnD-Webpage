@@ -60,7 +60,7 @@ if (document.querySelector("#roll-stats") !== null) {
           // Unflip so card is back to normal orientation and updating back works correctly
           card.classList.remove("is-flipped");
         }, flipDuration + 50);
-      }, index * 600);
+      }, index * 500);
     });
   });
 }

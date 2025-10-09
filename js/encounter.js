@@ -1,13 +1,17 @@
 import { getDataGeneral, getDataByQuery, getRandomMonsters } from "./dndApi.js";
+import { getLocalStorage, saveEncounter } from "./localStorage.js";
 
 const displayResults = document.querySelector(".results");
 const searchButton = document.querySelector(".search-button");
 const searchInput = document.getElementById("search");
+
 const context = "add-list";
 const encounterList = document.querySelector("#encounter-list");
 const clearButton = document.getElementById("clear");
 const randomButton = document.getElementById("random-encounter");
 const form = document.querySelector("form");
+
+const saveEncounterButton = document.querySelector(".save");
 
 // Listens for input in the search bar and fetches based on data
 searchInput.addEventListener("input", async (e) => {
@@ -29,7 +33,6 @@ searchButton.addEventListener("click", async (e) => {
   const category = document.getElementById("category").value;
   await getDataGeneral(category, displayResults, context);
 });
-
 
 // Listens for add-to-list button click
 document.addEventListener("click", (e) => {
@@ -59,11 +62,20 @@ function addToList(button) {
 }
 
 // Clears encounter list
-clearButton.addEventListener("click", (e)=>{
-  encounterList.innerHTML = '<p id="default-message">Your encounter will appear here!</p>';
+clearButton.addEventListener("click", (e) => {
+  encounterList.innerHTML =
+    '<p id="default-message">Your encounter will appear here!</p>';
 });
 
-randomButton.addEventListener("click", async (e)=>{
+randomButton.addEventListener("click", async (e) => {
   const number = form.elements["num-mon"].value;
   await getRandomMonsters(number, encounterList, context);
+});
+
+saveEncounterButton.addEventListener("click", (e) => {
+  const level = form.elements["level"].value;
+  const size = form.elements["size"].value;
+  const number = form.elements["num-mon"].value;
+  const monsters = getLocalStorage("current-encounter-monsters");
+  saveEncounter(level, size, number, monsters);
 });

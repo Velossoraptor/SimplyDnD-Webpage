@@ -40,8 +40,17 @@ export function saveCharacter(
   console.log("character added");
 }
 
-export function saveEncounter(){
-
+export function saveEncounter(level, size, number, monsters = []){
+    const encounters = getLocalStorage("encounters") || [];
+    const newEncounter = {
+        level: level,
+        size: size,
+        numberMonsters: number,
+        monsters: monsters
+    }
+    encounters.push(newEncounter);
+    setLocalStorage("encounters", encounters);
+    console.log("encounter added");
 }
 
 export function saveInitiative(){
