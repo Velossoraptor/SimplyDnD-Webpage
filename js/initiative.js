@@ -1,5 +1,6 @@
-import { getDataGeneral, getDataByQuery } from "./dndApi.js";
+import { getDataGeneral, getDataByQuery, returnDataByQuery } from "./dndApi.js";
 import {rollDice} from "./dice.js";
+import { getLocalStorage, setLocalStorage, saveInitiative } from "./localStorage.js";
 
 const displayResults = document.querySelector(".results");
 const searchButton = document.querySelector(".search-button");
@@ -15,6 +16,8 @@ const diceForm = document.querySelector(".dice-selector");
 const diceButton = document.getElementById("roll");
 const rollHistory = document.querySelector(".roll-history")
 const clearRolls = document.getElementById("clear-rolls");
+
+const saveInit = document.querySelector(".save");
 
 searchInput.addEventListener("input", async (e) => {
   if (e.key === "Enter") {
@@ -44,6 +47,7 @@ document.addEventListener("click", (e) => {
 
 // Adds monster to encounter list
 function addToList(button) {
+  const currentInit = getLocalStorage("current-init") || [];
   if (encounterList.querySelector("#default-message")) {
     encounterList.querySelector("#default-message").remove();
   }
@@ -57,21 +61,30 @@ function addToList(button) {
   const monsterCard = document.createElement("div");
   monsterCard.classList.add("monster-card");
   const outerCard = document.createElement("div");
+  const init = rollDice(20, 1, 0).total;
   monsterCard.innerHTML = `
   <p>${name}</p>
-  <p>Init: ${rollDice(20, 1, 0).total}</p>
+  <p>Init: ${init}</p>
   `;
   outerCard.appendChild(monsterCard);
   encounterList.appendChild(outerCard);
+  const newMonster = {
+    name: name,
+    init: init,
+  }
+  currentInit.push(newMonster);
+  setLocalStorage("current-init", currentInit);
 }
 
 // Clears encounter list
 clearButton.addEventListener("click", (e)=>{
   encounterList.innerHTML = '<p id="default-message">Your encounter will appear here!</p>';
+  setLocalStorage("current-init",[]);
 });
 
 // Adds player to encounter list
 addPlayer.addEventListener("click", (e)=>{
+  const currentInit = getLocalStorage("current-init") || [];
   const container = document.createElement("div");
   const card = document.createElement("div");
   card.classList.add("monster-card");
@@ -84,6 +97,13 @@ addPlayer.addEventListener("click", (e)=>{
   `;
   container.appendChild(card);
   encounterList.appendChild(container);
+  const playerInfo = {
+    name: playerName,
+    init: playerInit,
+    ac: playerAc
+  }
+  currentInit.push(playerInfo);
+  setLocalStorage("current-init", currentInit);
 })
 
 // Rolls Dice
@@ -107,4 +127,9 @@ diceButton.addEventListener("click", (e)=>{
 // Clears roll history
 clearRolls.addEventListener("click", (e)=>{
   rollHistory.innerHTML = "";
+});
+
+saveInit.addEventListener("click", (e)=>{
+  const initiative = getLocalStorage("current-init");
+  saveInitiative(initiative);
 });

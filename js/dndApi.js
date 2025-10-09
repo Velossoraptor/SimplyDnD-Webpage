@@ -230,3 +230,21 @@ export async function returnDataGeneral(category) {
     console.log(error);
   }
 }
+export async function returnDataByQuery(category, query) {
+  try {
+    const response = await fetch(url + category + "/" + query);
+    if (response.ok) {
+      const data = await response.json();
+      // console.log(data.results);
+      return data.results;
+    } else if (response.status === 404) {
+      displayResults.innerHTML = `<p>No results found for ${category} - what you're looking for might not exist.</p>`;
+    } else if (response.status === 500) {
+      displayResults.innerHTML = `<p>Server error - try again later.</p>`;
+    } else {
+      throw Error(await response.text());
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}

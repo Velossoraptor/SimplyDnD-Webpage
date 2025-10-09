@@ -53,8 +53,11 @@ export function saveEncounter(level, size, number, monsters = []){
     console.log("encounter added");
 }
 
-export function saveInitiative(){
-
+export function saveInitiative(initOrder){
+    const initiatives = getLocalStorage("initiatives") || [];
+    const newInit = initOrder;
+    initiatives.push(newInit);
+    setLocalStorage("initiatives", initiatives);
 }
 
 

@@ -28,7 +28,11 @@
       </div>
     </header>
     <main>
-      <h2>Initiative Tracker</h2>
+      <div class="title-holder">
+        <h2>Initiative Tracker</h2>
+        <button class="save">Bookmark Initiative</button>
+      </div>
+
       <section class="character-generator">
         <div class="container">
           <div class="title-holder">
@@ -143,18 +147,21 @@
               >
               <label>
                 +
-                <input type="number" name="modifier" id="modifier" value=0 max="30">
+                <input
+                  type="number"
+                  name="modifier"
+                  id="modifier"
+                  value="0"
+                  max="30"
+                />
               </label>
             </fieldset>
           </form>
           <div class="title-holder">
-              <p class="default-message">Roll history</p>
-              <button id="clear-rolls">Clear</button>
-            </div>
-          <div class="roll-history">
-            
-            
+            <p class="default-message">Roll history</p>
+            <button id="clear-rolls">Clear</button>
           </div>
+          <div class="roll-history"></div>
           <!-- Add Dice to be rolled and a selector for number of dice, checkbox for adv/disadv-->
         </div>
       </section>
