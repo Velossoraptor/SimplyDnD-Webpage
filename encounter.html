@@ -22,7 +22,7 @@
           height="auto"
         />
         <a href="./index.html">Simply DnD</a>
-        <a href="./encounter.html" class="active">Encounter Generator</a>
+        <a class="active">Encounter Generator</a>
         <a href="./initiative.html">Initiative Tracker</a>
         <a href="./bookmark.html">Bookmarks</a>
         <a href="./contact.html">Contact Me</a>
@@ -43,10 +43,15 @@
             <fieldset>
               <label
                 >Average Party Level
-                <input type="number" name="level" id="level" value="1"
+                <input type="number" name="level" id="level" value="1" min="1"
               /></label>
               <label
-                >Party Size<input type="number" name="size" id="size" value="4"
+                >Party Size<input
+                  type="number"
+                  name="size"
+                  id="size"
+                  value="4"
+                  min="1"
               /></label>
               <label
                 >Number of Monsters<input
@@ -54,6 +59,8 @@
                   name="num-mon"
                   id="num-mon"
                   value="1"
+                  min="1"
+                  max="100"
               /></label>
             </fieldset>
           </form>

@@ -1,5 +1,5 @@
 import { getDataGeneral, getDataByQuery, getRandomMonsters } from "./dndApi.js";
-import { getLocalStorage, saveEncounter } from "./localStorage.js";
+import { getLocalStorage, setLocalStorage, saveEncounter } from "./localStorage.js";
 
 const displayResults = document.querySelector(".results");
 const searchButton = document.querySelector(".search-button");
@@ -12,6 +12,7 @@ const randomButton = document.getElementById("random-encounter");
 const form = document.querySelector("form");
 
 const saveEncounterButton = document.querySelector(".save");
+ getDataGeneral("monsters", displayResults, context);
 
 // Listens for input in the search bar and fetches based on data
 searchInput.addEventListener("input", async (e) => {
@@ -52,7 +53,9 @@ function addToList(button) {
   } else {
     name = button.parentElement.parentElement.querySelector("p").innerText;
   }
-
+  const currentEncounter = getLocalStorage("current-encounter-monsters");
+  currentEncounter.push(name);
+  setLocalStorage("current-encounter-monsters", currentEncounter);
   const monsterCard = document.createElement("div");
   monsterCard.classList.add("monster-card");
   const outerCard = document.createElement("div");
@@ -65,6 +68,7 @@ function addToList(button) {
 clearButton.addEventListener("click", (e) => {
   encounterList.innerHTML =
     '<p id="default-message">Your encounter will appear here!</p>';
+  setLocalStorage("current-encounter-monsters", []);
 });
 
 // Generates random encounter

@@ -77,7 +77,7 @@ export async function getRandomMonsters(number, displayResults, context = "bookm
   try {
     const response = await fetch(url + category);
     if(response.ok){
-      const monsters = getLocalStorage("current-encounter-monsters") || [];
+      const monsters = [];
       const data = await response.json();
       const results = data.results;
       const randomResults = [];

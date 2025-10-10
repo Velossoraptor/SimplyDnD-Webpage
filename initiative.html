@@ -23,7 +23,7 @@
         />
         <a href="./index.html">Simply DnD</a>
         <a href="./encounter.html">Encounter Generator</a>
-        <a href="./initiative.html" class="active">Initiative Tracker</a>
+        <a class="active">Initiative Tracker</a>
         <a href="./bookmark.html">Bookmarks</a>
         <a href="./contact.html">Contact Me</a>
       </div>
@@ -55,10 +55,10 @@
                   type="number"
                   name="init"
                   id="init"
-                  value="10"
+                  value="10" min="1" max="40"
               /></label>
               <label
-                >Armor Class<input type="number" name="ac" id="ac" value="12"
+                >Armor Class<input type="number" name="ac" id="ac" value="12" min="1" max="30"
               /></label>
             </fieldset>
           </form>
@@ -67,6 +67,7 @@
           <div class="title-holder">
             <h3>Add Monsters to Initiative</h3>
           </div>
+          <p>(Monster initiative will be random)</p>
           <div class="title-holder search-bar">
             <form>
               <select name="category" id="category">
@@ -109,19 +110,19 @@
           <form class="dice-selector">
             <fieldset>
               <label for="no-mod"
-                ><input type="radio" name="no-mod" id="no-mod" checked />No
+                ><input type="radio" name="mod" id="no-mod" value="none" checked />No
                 Modifier</label
               >
 
               <label for="adv"
-                ><input type="radio" name="adv" id="adv" />Advantage</label
+                ><input type="radio" name="mod" id="adv" value="adv"/>Advantage</label
               >
 
               <label for="d-adv"
                 ><input
                   type="radio"
-                  name="d-adv"
-                  id="d-adv"
+                  name="mod"
+                  id="d-adv" value="disadv"
                 />Disadvantage</label
               >
             </fieldset>

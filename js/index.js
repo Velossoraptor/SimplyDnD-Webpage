@@ -11,6 +11,8 @@ const characterForm = document.querySelector("form");
 generateOptions("races", characterForm.elements["race"]);
 generateOptions("classes", characterForm.elements["class"]);
 
+getDataGeneral("classes", displayResults, "bookmark");
+
 // Listens for input on search elements and updates results
 searchInput.addEventListener("input", async (e) => {
   if (e.key === "Enter") {

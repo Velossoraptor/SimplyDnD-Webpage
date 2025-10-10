@@ -30,6 +30,7 @@ html {
   & .active {
     background-color: var(--Red);
     color: var(--Cream);
+    cursor: pointer;
   }
   padding-bottom: 0.5em;
   border-bottom: solid 1px var(--Orange);
@@ -200,6 +201,15 @@ form {
   perspective: 1000px;
 }
 
+.bookmark-card {
+  align-items: start;
+}
+.delete {
+  width: 48px;
+  height: 48px;
+  font-size: 1.5em;
+}
+
 .dice-selector {
   display: flex;
   flex-direction: row;
@@ -232,6 +242,7 @@ form {
   }
 }
 .bookmark-button {
+  display: none;
   height: 48px;
   width: 48px;
   background-image: url(../images/bookmark-add.svg);
@@ -252,12 +263,28 @@ form {
   font-size: 2em;
   cursor: pointer;
 }
-.save, .download {
+.save,
+.download {
   margin-right: 2em;
   margin-top: 0.8em;
 }
-.clear{
-    width: 48px;
-    height: 48px;
-    font-size: 1.5em;
+.clear {
+  width: 48px;
+  height: 48px;
+  font-size: 1.5em;
+}
+button,
+input[type="submit"] {
+  border-radius: 8px;
+  border: 1px solid var(--Red);
+  background-color: var(--Cream);
+  cursor: pointer;
+  :hover {
+    background-color: #c4beb1;
+  }
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #ded7c9;
 }

@@ -11,6 +11,12 @@ const download = document.querySelector(".download");
 const category = document.querySelector("#category");
 const searchButton = document.querySelector(".search-button");
 
+displayResults("none");
+const monsterCards = document.querySelectorAll(".monster-card");
+  monsterCards.forEach((monster) => {
+    monster.classList.add("bookmark-card");
+  });
+
 category.addEventListener("input", (e) => {
   characters = getLocalStorage("characters") || [];
   encounters = getLocalStorage("encounters") || [];
@@ -20,6 +26,10 @@ category.addEventListener("input", (e) => {
   if (results.innerHTML == "") {
     results.innerHTML = `<p>No Bookmarks Yet!</p>`;
   }
+  const monsterCards = document.querySelectorAll(".monster-card");
+  monsterCards.forEach((monster) => {
+    monster.classList.add("bookmark-card");
+  });
 });
 searchButton.addEventListener("click", (e) => {
   characters = getLocalStorage("characters") || [];
@@ -30,6 +40,10 @@ searchButton.addEventListener("click", (e) => {
   if (results.innerHTML == "") {
     results.innerHTML = `<p>No Bookmarks Yet!</p>`;
   }
+  const monsterCards = document.querySelectorAll(".monster-card");
+  monsterCards.forEach((monster) => {
+    monster.classList.add("bookmark-card");
+  });
 });
 
 document.addEventListener("click", (e) => {
@@ -154,7 +168,7 @@ function downloadTextFile(filename, text) {
   URL.revokeObjectURL(url); // Clean up the URL object
 }
 
-download.addEventListener("click", (e)=>{
+download.addEventListener("click", (e) => {
   const data = {
     characters: getLocalStorage("characters") || [],
     encounters: getLocalStorage("encounters") || [],
@@ -165,4 +179,4 @@ download.addEventListener("click", (e)=>{
   const jsonText = JSON.stringify(data, null, 2);
 
   downloadTextFile("SimplyDnDBookmarks.txt", jsonText);
-})
+});

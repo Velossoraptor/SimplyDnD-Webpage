@@ -1,20 +1,61 @@
 import { setLocalStorage } from "./localStorage.js";
 
 // Rolls a dice with a number of sides, a number of times, and adds the modifier
-export function rollDice(sides, number, modifier = 0) {
-    const results = {
-        "rolls": [],
-        "total": 0,
-        "modifier": modifier
-    }
+// export function rollDice(sides, number, advantage, modifier = 0) {
+//     const results = {
+//         "rolls": [],
+//         "total": 0,
+//         "modifier": modifier,
+//         "adv": advantage
+//     }
+//   for (let i = 0; i < number; i++) {
+//     const roll = Math.floor(Math.random() * sides) + 1;
+//     results["rolls"].push(roll);
+//     results.total += roll;
+//   }
+//   results["total"] += modifier;
+//   return results;
+// }
+export function rollDice(sides, number = 1, advantage = "none", modifier = 0) {
+  const results = {
+    rolls: [], // each entry can be a single number or an object with both rolls
+    total: 0,
+    modifier,
+    advantage,
+  };
+
   for (let i = 0; i < number; i++) {
-    const roll = Math.floor(Math.random() * sides) + 1;
-    results["rolls"].push(roll);
-    results.total += roll;
+    let chosenRoll;
+    let rollData;
+
+    const r1 = Math.floor(Math.random() * sides) + 1;
+    if (advantage === "adv" || advantage === "disadv") {
+      const r2 = Math.floor(Math.random() * sides) + 1;
+
+      if (advantage === "adv") {
+        chosenRoll = Math.max(r1, r2);
+      } else {
+        chosenRoll = Math.min(r1, r2);
+      }
+
+      rollData = {
+        rolls: [r1, r2],
+        chosen: chosenRoll,
+      };
+    } else {
+      chosenRoll = r1;
+      rollData = { rolls: [r1], chosen: r1 };
+    }
+
+    results.rolls.push(rollData);
+    results.total += chosenRoll;
   }
-  results["total"] += modifier;
+
+  results.total += modifier;
+  console.log(results);
   return results;
 }
+
 
 
 // Specifically rolls dice for a stat generator
