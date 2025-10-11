@@ -288,3 +288,103 @@ button:hover,
 input[type="submit"]:hover {
   background-color: #ded7c9;
 }
+
+/* #glowing {
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  z-index: 0;
+  padding: 30px;
+  margin: 4px;
+}
+
+#glowing::before,
+#glowing::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    #ff0000,
+    #ffff00,
+    #00ff00,
+    #00ffff,
+    #0000ff,
+    #ff00ff,
+    #ff0000
+  );
+  animation: rotate 4s linear infinite;
+  z-index: -1;
+}
+
+#glowing::after {
+  filter: blur(20px);
+  opacity: 0.7;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+#glowing {
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  /* background: transparent; */
+  background: var(--LightCream);
+  z-index: 0;
+  padding: 30px;
+  /* margin: 4px; */
+}
+
+@property --angle{
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    @property --transparency{
+        syntax: "<percentage>";
+        initial-value: 0%;
+        inherits: false;
+    }
+
+    #glowing::after, #glowing::before{
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: conic-gradient(from var(--angle),  red, yellow,blue, purple,transparent var(--transparency) );
+        top: 50%;
+        left: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+        padding: 3px;
+        border-top-left-radius: 20%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 20%;
+        border-bottom-left-radius: 10px;
+        animation: 5s spin ease infinite;
+        filter: blur(1rem);
+        opacity: .5;
+    }
+
+    @keyframes spin{
+        0%{
+            --angle: 0deg;
+            --transparency: 100%;
+        }29%{
+            --angle: 360deg;
+            --transparency: 100%;
+            opacity: 0;
+        }
+        80%{
+            opacity: 0;
+        }
+    }
