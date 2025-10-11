@@ -1,72 +1,65 @@
-import { getDataGeneral, getDataByQuery, returnDataByQuery } from "./dndApi.js";
-import { rollDice } from "./dice.js";
+import { getDataGeneral, getDataByQuery, returnDataByQuery } from './dndApi.js';
+import { rollDice } from './dice.js';
 import {
   getLocalStorage,
   setLocalStorage,
   saveInitiative,
-} from "./localStorage.js";
+} from './localStorage.js';
 
-const displayResults = document.querySelector(".results");
-const searchButton = document.querySelector(".search-button");
-const searchInput = document.getElementById("search");
+const displayResults = document.querySelector('.results');
+const searchInput = document.getElementById('search');
 
-const context = "add-list";
-const encounterList = document.querySelector("#encounter-list");
-const clearButton = document.getElementById("clear");
-const addPlayer = document.getElementById("add-player");
-const form = document.querySelector("form");
+const context = 'add-list';
+const encounterList = document.querySelector('#encounter-list');
+const clearButton = document.getElementById('clear');
+const addPlayer = document.getElementById('add-player');
+const form = document.querySelector('form');
 
-const diceForm = document.querySelector(".dice-selector");
-const diceButton = document.getElementById("roll");
-const rollHistory = document.querySelector(".roll-history");
-const clearRolls = document.getElementById("clear-rolls");
+const diceForm = document.querySelector('.dice-selector');
+const diceButton = document.getElementById('roll');
+const rollHistory = document.querySelector('.roll-history');
+const clearRolls = document.getElementById('clear-rolls');
 
-const saveInit = document.querySelector(".save");
+const saveInit = document.querySelector('.save');
 
-getDataGeneral("monsters", displayResults, context);
+getDataGeneral('monsters', displayResults, context);
 
-searchInput.addEventListener("input", async (e) => {
-  if (e.key === "Enter") {
+searchInput.addEventListener('input', async (e) => {
+  if (e.key === 'Enter') {
     e.preventDefault();
   }
-  const category = document.getElementById("category").value;
+  const category = document.getElementById('category').value;
   const query = searchInput.value;
-  if (query != null && query != "") {
+  if (query != null && query != '') {
     getDataByQuery(category, query, displayResults, context);
   } else {
     getDataGeneral(category, displayResults, context);
   }
 });
 
-searchButton.addEventListener("click", async (e) => {
-  e.preventDefault();
-  const category = document.getElementById("category").value;
-  await getDataGeneral(category, displayResults, context);
-});
-
 // Listens for add-to-list button click
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("add-list-button")) {
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('add-list-button')) {
     addToList(e.target);
   }
 });
 
 // Adds monster to encounter list
 function addToList(button) {
-  const currentInit = getLocalStorage("current-init") || [];
-  if (encounterList.querySelector("#default-message")) {
-    encounterList.querySelector("#default-message").remove();
+  const currentInit = getLocalStorage('current-init') || [];
+  if (encounterList.querySelector('#default-message')) {
+    encounterList.querySelector('#default-message').remove();
   }
   let name;
-  if (button.parentElement.parentElement.classList.contains("expanded")) {
-    name = button.parentElement.querySelector("p").innerText;
+  if (button.parentElement.parentElement.classList.contains('expanded')) {
+    name = button.parentElement.querySelector('p').innerText;
   } else {
-    name = button.parentElement.parentElement.querySelector("p").innerText;
+    name = button.parentElement.parentElement.querySelector('p').innerText;
   }
 
-  const monsterCard = document.createElement("div");
-  monsterCard.classList.add("monster-card");
-  const outerCard = document.createElement("div");
+  const monsterCard = document.createElement('div');
+  monsterCard.classList.add('monster-card');
+  const outerCard = document.createElement('div');
   const init = rollDice(20, 1, 0).total;
   monsterCard.innerHTML = `
   <p>${name}</p>
@@ -79,25 +72,25 @@ function addToList(button) {
     init: init,
   };
   currentInit.push(newMonster);
-  setLocalStorage("current-init", currentInit);
+  setLocalStorage('current-init', currentInit);
 }
 
 // Clears encounter list
-clearButton.addEventListener("click", (e) => {
+clearButton.addEventListener('click', (e) => {
   encounterList.innerHTML =
     '<p id="default-message">Your encounter will appear here!</p>';
-  setLocalStorage("current-init", []);
+  setLocalStorage('current-init', []);
 });
 
 // Adds player to encounter list
-addPlayer.addEventListener("click", (e) => {
-  const currentInit = getLocalStorage("current-init") || [];
-  const container = document.createElement("div");
-  const card = document.createElement("div");
-  card.classList.add("monster-card");
-  const playerName = form.elements["char-name"].value;
-  const playerInit = form.elements["init"].value;
-  const playerAc = form.elements["ac"].value;
+addPlayer.addEventListener('click', (e) => {
+  const currentInit = getLocalStorage('current-init') || [];
+  const container = document.createElement('div');
+  const card = document.createElement('div');
+  card.classList.add('monster-card');
+  const playerName = form.elements['char-name'].value;
+  const playerInit = form.elements['init'].value;
+  const playerAc = form.elements['ac'].value;
   card.innerHTML = `
     <p>${playerName}</p>
     <p>Init: ${playerInit} | AC ${playerAc}</p>
@@ -110,50 +103,49 @@ addPlayer.addEventListener("click", (e) => {
     ac: playerAc,
   };
   currentInit.push(playerInfo);
-  setLocalStorage("current-init", currentInit);
+  setLocalStorage('current-init', currentInit);
 });
 
 // Rolls Dice
-diceButton.addEventListener("click", (e) => {
-  const advRadios = document.querySelectorAll('input[name="mod"]');
-  let adv = "none";
-  for (const radio of advRadios) {
-    if (radio.checked) {
-      adv = radio.value;
-      break; // Stop once you find the checked one
+diceButton.addEventListener('click', (e) => {
+  if (diceForm.elements['num-dice'].value <= 101) {
+    const advRadios = document.querySelectorAll('input[name="mod"]');
+    let adv = 'none';
+    for (const radio of advRadios) {
+      if (radio.checked) {
+        adv = radio.value;
+        break; // Stop once you find the checked one
+      }
     }
-  }
-  const number = diceForm.elements["num-dice"].value;
-  const sides = diceForm.elements["dice-type"].value;
-  const modifier = diceForm.elements["modifier"].value;
-  const result = rollDice(sides, number, adv, parseInt(modifier));
-  console.log(result);
+    const number = diceForm.elements['num-dice'].value;
+    const sides = diceForm.elements['dice-type'].value;
+    const modifier = diceForm.elements['modifier'].value;
+    const result = rollDice(sides, number, adv, parseInt(modifier));
+    console.log(result);
 
-  const lastRoll = result.rolls[result.rolls.length - 1];
-  const shownRoll =
-    result.adv === "none"
-      ? lastRoll.chosen
-      : `${lastRoll.rolls.join(", ")} → ${lastRoll.chosen}`;
+    const lastRoll = result.rolls[result.rolls.length - 1];
 
-  const container = document.createElement("div");
-  const card = document.createElement("div");
-  card.classList.add("monster-card");
-  card.innerHTML = `
+    const container = document.createElement('div');
+    const card = document.createElement('div');
+    card.classList.add('monster-card');
+    card.innerHTML = `
     <p>Roll: ${number}d${sides} + ${modifier} (${adv})</p>
-    <p>Rolls: ${shownRoll}</p>
     <p>Result: ${result.total}</p>
   `;
-  container.appendChild(card);
-  rollHistory.insertBefore(container, rollHistory.firstChild);
+    container.appendChild(card);
+    rollHistory.insertBefore(container, rollHistory.firstChild);
+  } else {
+    alert('Too many Dice! (Limit 101)');
+  }
 });
 
 // Clears roll history
-clearRolls.addEventListener("click", (e) => {
-  rollHistory.innerHTML = "";
+clearRolls.addEventListener('click', (e) => {
+  rollHistory.innerHTML = '';
 });
 
 // Adds current initiative to local storage bookmarks
-saveInit.addEventListener("click", (e) => {
-  const initiative = getLocalStorage("current-init");
+saveInit.addEventListener('click', (e) => {
+  const initiative = getLocalStorage('current-init');
   saveInitiative(initiative);
 });

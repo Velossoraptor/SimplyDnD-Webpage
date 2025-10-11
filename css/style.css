@@ -289,48 +289,15 @@ input[type="submit"]:hover {
   background-color: #ded7c9;
 }
 
-/* #glowing {
-  border-radius: 15px;
-  position: relative;
-  overflow: hidden;
-  background: transparent;
-  z-index: 0;
-  padding: 30px;
-  margin: 4px;
+.dice-selector input[type="number"], .dice-selector select {
+  width: 50px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  margin-left: 5px;
+  /* border: 0; */
+  box-sizing: border-box;  
 }
-
-#glowing::before,
-#glowing::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    #ff0000,
-    #ffff00,
-    #00ff00,
-    #00ffff,
-    #0000ff,
-    #ff00ff,
-    #ff0000
-  );
-  animation: rotate 4s linear infinite;
-  z-index: -1;
-}
-
-#glowing::after {
-  filter: blur(20px);
-  opacity: 0.7;
-}
-
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
-  }
-} */
 
 #glowing {
   border-radius: 15px;
