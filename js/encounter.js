@@ -77,8 +77,12 @@ clearButton.addEventListener('click', (e) => {
 
 // Generates random encounter
 randomButton.addEventListener('click', async (e) => {
-  const number = form.elements['num-mon'].value;
-  await getRandomMonsters(number, encounterList, context);
+  if (form.elements['num-mon'].value <= 100) {
+    const number = form.elements['num-mon'].value;
+    await getRandomMonsters(number, encounterList, context);
+  }else {
+    alert('Too many Monsters! (Limit 100)');
+  }
 });
 
 // Saves encounter

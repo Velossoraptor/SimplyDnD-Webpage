@@ -1,11 +1,15 @@
-import { getLocalStorage, setLocalStorage } from "./localStorage.js";
+import { getLocalStorage, setLocalStorage } from './localStorage.js';
 
-const url = "https://www.dnd5eapi.co/api/2014/";
+const url = 'https://www.dnd5eapi.co/api/2014/';
 
 // GET FUNCTIONS
 
 // Gets name of all the data in the selected category
-export async function getDataGeneral(category, displayResults, context = "bookmark") {
+export async function getDataGeneral(
+  category,
+  displayResults,
+  context = 'bookmark'
+) {
   try {
     const response = await fetch(url + category);
     if (response.ok) {
@@ -24,10 +28,15 @@ export async function getDataGeneral(category, displayResults, context = "bookma
 }
 
 // Gets the details of the selected item in the selected category
-export async function getDataDetails(category, query, displayCard, context = "bookmark") {
+export async function getDataDetails(
+  category,
+  query,
+  displayCard,
+  context = 'bookmark'
+) {
   try {
-    const lowerQuery = query.toLowerCase().replace(" ", "-");
-    const response = await fetch(url + category + "/" + lowerQuery);
+    const lowerQuery = query.toLowerCase().replace(' ', '-');
+    const response = await fetch(url + category + '/' + lowerQuery);
     if (response.ok) {
       const data = await response.json();
       displayDataDetails(data, category, displayCard, context);
@@ -44,15 +53,20 @@ export async function getDataDetails(category, query, displayCard, context = "bo
 }
 
 // Gets the details of items that fit the query in the selected category
-export async function getDataByQuery(category, query, displayResults, context = "bookmark") {
+export async function getDataByQuery(
+  category,
+  query,
+  displayResults,
+  context = 'bookmark'
+) {
   try {
-    const lowerQuery = query.toLowerCase().replace(" ", "-");
+    const lowerQuery = query.toLowerCase().replace(' ', '-');
     const response = await fetch(url + category);
     if (response.ok) {
       const data = await response.json();
       const results = data.results;
       const matchingResults = results.filter((item) =>
-        item.index.includes(lowerQuery),
+        item.index.includes(lowerQuery)
       );
 
       if (matchingResults.length === 0) {
@@ -73,23 +87,28 @@ export async function getDataByQuery(category, query, displayResults, context = 
   }
 }
 
-export async function getRandomMonsters(number, displayResults, context = "bookmark", category = "monsters"){
+export async function getRandomMonsters(
+  number,
+  displayResults,
+  context = 'bookmark',
+  category = 'monsters'
+) {
   try {
     const response = await fetch(url + category);
-    if(response.ok){
+    if (response.ok) {
       const monsters = [];
       const data = await response.json();
       const results = data.results;
       const randomResults = [];
-      for(let i = 0; i<number; i++){
+      for (let i = 0; i < number; i++) {
         const randomIndex = Math.floor(Math.random() * results.length);
         monsters.push(results[randomIndex].index);
         randomResults.push(results[randomIndex]);
         displayDataGeneral(randomResults, category, displayResults);
       }
-      setLocalStorage("current-encounter-monsters", monsters)
+      setLocalStorage('current-encounter-monsters', monsters);
     }
-  }catch (error){
+  } catch (error) {
     console.log(error);
   }
 }
@@ -97,27 +116,27 @@ export async function getRandomMonsters(number, displayResults, context = "bookm
 // DISPLAY FUNCTIONS
 
 // Displays the name of all the data in the selected category and adds a toggle to show details or back to basics
-function displayDataGeneral(results, category, displayResults, context = "") {
-  displayResults.innerHTML = "";
-  let buttonContent = "";
-  if(context === "add-list"){
-    buttonContent = "+";
+function displayDataGeneral(results, category, displayResults, context = '') {
+  displayResults.innerHTML = '';
+  let buttonContent = '';
+  if (context === 'add-list') {
+    buttonContent = '+';
   }
   let buttonHTML = `<button class="${context}-button">${buttonContent}</button>`;
-  if(context === ""){
-    buttonHTML = "";
+  if (context === '') {
+    buttonHTML = '';
   }
 
   results.forEach((item) => {
-    const card = document.createElement("div");
+    const card = document.createElement('div');
     card.innerHTML = `<div class="monster-card">
               <p>${item.name}</p>
               ${buttonHTML}
             </div>`;
     displayResults.appendChild(card);
 
-    card.addEventListener("click", async (e) => {
-      if (card.classList.contains("expanded")) {
+    card.addEventListener('click', async (e) => {
+      if (card.classList.contains('expanded')) {
         card.innerHTML = `
               <p>${item.name}</p>
               ${buttonHTML}
@@ -125,23 +144,23 @@ function displayDataGeneral(results, category, displayResults, context = "") {
       } else {
         await getDataDetails(category, item.index, card, context);
       }
-      card.classList.toggle("expanded");
+      card.classList.toggle('expanded');
     });
   });
 }
 
-
-
 // Displays the details of the selected item in the selected category
 function displayDataDetails(data, category, displayCard, context) {
-  displayCard.innerHTML = "";
-  let buttonContent = "";
-  if(context === "add-list"){
-    buttonContent = "+";
+  displayCard.innerHTML = '';
+  let buttonContent = '';
+  if (context === 'add-list') {
+    buttonContent = '+';
   }
   let buttonHTML = `<button class="${context}-button">${buttonContent}</button>`;
-
-  if (category === "monsters") {
+  if (context === '') {
+    buttonHTML = '';
+  }
+  if (category === 'monsters') {
     displayCard.innerHTML = `
     <div>
         <p>${data.name}</p>
@@ -150,14 +169,14 @@ function displayDataDetails(data, category, displayCard, context) {
     <div>
     ${buttonHTML}
     `;
-  } else if (category === "spells") {
-    let conc = "";
+  } else if (category === 'spells') {
+    let conc = '';
     if (data.concentration) {
-      conc = "✔";
+      conc = '✔';
     } else {
-      conc = "✘";
+      conc = '✘';
     }
-    let attack = "";
+    let attack = '';
     if (data.attack_type != null) {
       attack =
         data.attack_type.charAt(0).toUpperCase() + data.attack_type.slice(1);
@@ -170,7 +189,7 @@ function displayDataDetails(data, category, displayCard, context) {
     </div>
     ${buttonHTML}
     `;
-  } else if (category === "features") {
+  } else if (category === 'features') {
     displayCard.innerHTML = `
     <div>
         <p>${data.name}</p>
@@ -179,7 +198,7 @@ function displayDataDetails(data, category, displayCard, context) {
     </div>
     ${buttonHTML}
     `;
-  } else if (category === "races") {
+  } else if (category === 'races') {
     const details = [
       data.alignment,
       data.age,
@@ -192,11 +211,11 @@ function displayDataDetails(data, category, displayCard, context) {
     <div>
         <p>${data.name}</p>
         <p>Speed ${data.speed} | ${data.size}</p>
-        <p>"${details.join("<br><br>")}"</p>
+        <p>"${details.join('<br><br>')}"</p>
     </div>
     ${buttonHTML}
     `;
-  } else if (category === "classes") {
+  } else if (category === 'classes') {
     displayCard.innerHTML = `
     <div>
         <p>${data.name}</p>
@@ -207,9 +226,8 @@ function displayDataDetails(data, category, displayCard, context) {
     ${buttonHTML}
     `;
   }
-  displayCard.classList.add("monster-card");
+  displayCard.classList.add('monster-card');
 }
-
 
 // Specific for generating options, returns data raw instead of displaying it
 export async function returnDataGeneral(category) {
@@ -220,9 +238,9 @@ export async function returnDataGeneral(category) {
       // console.log(data.results);
       return data.results;
     } else if (response.status === 404) {
-      displayResults.innerHTML = `<p>No results found for ${category} - what you're looking for might not exist.</p>`;
+      return `<p>No results found for ${category} - what you're looking for might not exist.</p>`;
     } else if (response.status === 500) {
-      displayResults.innerHTML = `<p>Server error - try again later.</p>`;
+      return `<p>Server error - try again later.</p>`;
     } else {
       throw Error(await response.text());
     }
@@ -233,15 +251,15 @@ export async function returnDataGeneral(category) {
 
 export async function returnDataByQuery(category, query) {
   try {
-    const response = await fetch(url + category + "/" + query);
+    const response = await fetch(url + category + '/' + query);
     if (response.ok) {
       const data = await response.json();
       // console.log(data.results);
       return data.results;
     } else if (response.status === 404) {
-      displayResults.innerHTML = `<p>No results found for ${category} - what you're looking for might not exist.</p>`;
+      return `<p>No results found for ${category} - what you're looking for might not exist.</p>`;
     } else if (response.status === 500) {
-      displayResults.innerHTML = `<p>Server error - try again later.</p>`;
+      return `<p>Server error - try again later.</p>`;
     } else {
       throw Error(await response.text());
     }

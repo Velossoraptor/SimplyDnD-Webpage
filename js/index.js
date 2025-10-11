@@ -27,11 +27,11 @@ searchInput.addEventListener('input', async (e) => {
   }
 });
 
-// searchButton.addEventListener('click', async (e) => {
-//   e.preventDefault();
-//   const category = document.getElementById('category').value;
-//   await getDataGeneral(category, displayResults);
-// });
+document.getElementById('category').addEventListener('change', async (e) => {
+  e.preventDefault();
+  const category = document.getElementById('category').value;
+  await getDataGeneral(category, displayResults);
+});
 
 // Card Flip on Roll Stats Button Click
 if (document.querySelector('#roll-stats') !== null) {
