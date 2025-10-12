@@ -23,9 +23,9 @@ export function saveCharacter(
   background,
   level,
   hp,
-  scores = [],
+  scores = []
 ) {
-  const characters = getLocalStorage("characters") || [];
+  const characters = getLocalStorage('characters') || [];
   const newCharacter = {
     name: name,
     race: race,
@@ -36,32 +36,31 @@ export function saveCharacter(
     scores: scores,
   };
   characters.push(newCharacter);
-  setLocalStorage("characters", characters);
-  console.log("character added");
+  setLocalStorage('characters', characters);
+  console.log('character added');
 }
 
 // Saves an encounter to localstorage
-export function saveEncounter(level, size, number, monsters = []){
-    const encounters = getLocalStorage("encounters") || [];
-    const newEncounter = {
-        level: level,
-        size: size,
-        numberMonsters: number,
-        monsters: monsters
-    }
-    encounters.push(newEncounter);
-    setLocalStorage("encounters", encounters);
-    console.log("encounter added");
+export function saveEncounter(level, size, number, monsters = []) {
+  const encounters = getLocalStorage('encounters') || [];
+  const newEncounter = {
+    level: level,
+    size: size,
+    numberMonsters: number,
+    monsters: monsters,
+  };
+  encounters.push(newEncounter);
+  setLocalStorage('encounters', encounters);
+  console.log('encounter added');
 }
 
 // Saves an init to localstorage
-export function saveInitiative(initOrder){
-    const initiatives = getLocalStorage("initiatives") || [];
-    const newInit = initOrder;
-    initiatives.push(newInit);
-    setLocalStorage("initiatives", initiatives);
+export function saveInitiative(initOrder) {
+  const initiatives = getLocalStorage('initiatives') || [];
+  const newInit = initOrder;
+  initiatives.push(newInit);
+  setLocalStorage('initiatives', initiatives);
 }
-
 
 //To be implemented if I have time, sorry graders :P
 // export function saveClass(){

@@ -1,75 +1,75 @@
-import { getLocalStorage, setLocalStorage } from "./localStorage.js";
-let characters = getLocalStorage("characters") || [];
-let encounters = getLocalStorage("encounters") || [];
-let initiatives = getLocalStorage("initiatives") || [];
-const results = document.querySelector(".results");
+import { getLocalStorage, setLocalStorage } from './localStorage.js';
+let characters = getLocalStorage('characters') || [];
+let encounters = getLocalStorage('encounters') || [];
+let initiatives = getLocalStorage('initiatives') || [];
+const results = document.querySelector('.results');
 
-const download = document.querySelector(".download");
+const download = document.querySelector('.download');
 // Implement if I have time
 // const importBookmarks = document.querySelector(".import");
 
-const category = document.querySelector("#category");
-const searchButton = document.querySelector(".search-button");
+const category = document.querySelector('#category');
+// const searchButton = document.querySelector('.search-button');
 
-displayResults("none");
-const monsterCards = document.querySelectorAll(".monster-card");
-  monsterCards.forEach((monster) => {
-    monster.classList.add("bookmark-card");
-  });
-
-category.addEventListener("input", (e) => {
-  characters = getLocalStorage("characters") || [];
-  encounters = getLocalStorage("encounters") || [];
-  initiatives = getLocalStorage("initiatives") || [];
-  results.innerHTML = "";
-  displayResults(category.value);
-  if (results.innerHTML == "") {
-    results.innerHTML = `<p>No Bookmarks Yet!</p>`;
-  }
-  const monsterCards = document.querySelectorAll(".monster-card");
-  monsterCards.forEach((monster) => {
-    monster.classList.add("bookmark-card");
-  });
-});
-searchButton.addEventListener("click", (e) => {
-  characters = getLocalStorage("characters") || [];
-  encounters = getLocalStorage("encounters") || [];
-  initiatives = getLocalStorage("initiatives") || [];
-  results.innerHTML = "";
-  displayResults(category.value);
-  if (results.innerHTML == "") {
-    results.innerHTML = `<p>No Bookmarks Yet!</p>`;
-  }
-  const monsterCards = document.querySelectorAll(".monster-card");
-  monsterCards.forEach((monster) => {
-    monster.classList.add("bookmark-card");
-  });
+displayResults('none');
+let monsterCards = document.querySelectorAll('.monster-card');
+monsterCards.forEach((monster) => {
+  monster.classList.add('bookmark-card');
 });
 
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete")) {
-    const category =
+category.addEventListener('input', (e) => {
+  characters = getLocalStorage('characters') || [];
+  encounters = getLocalStorage('encounters') || [];
+  initiatives = getLocalStorage('initiatives') || [];
+  results.innerHTML = '';
+  displayResults(category.value);
+  if (results.innerHTML == '') {
+    results.innerHTML = `<p>No Bookmarks Yet!</p>`;
+  }
+  monsterCards = document.querySelectorAll('.monster-card');
+  monsterCards.forEach((monster) => {
+    monster.classList.add('bookmark-card');
+  });
+});
+// searchButton.addEventListener('click', (e) => {
+//   characters = getLocalStorage('characters') || [];
+//   encounters = getLocalStorage('encounters') || [];
+//   initiatives = getLocalStorage('initiatives') || [];
+//   results.innerHTML = '';
+//   displayResults(category.value);
+//   if (results.innerHTML == '') {
+//     results.innerHTML = `<p>No Bookmarks Yet!</p>`;
+//   }
+//   monsterCards = document.querySelectorAll('.monster-card');
+//   monsterCards.forEach((monster) => {
+//     monster.classList.add('bookmark-card');
+//   });
+// });
+
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete')) {
+    const objCategory =
       e.target.parentElement
-        .querySelector("div")
-        .querySelector("h3")
-        .textContent.toLowerCase() + "s";
-    const items = getLocalStorage(category);
+        .querySelector('div')
+        .querySelector('h3')
+        .textContent.toLowerCase() + 's';
+    const items = getLocalStorage(objCategory);
     const index = e.target.parentElement.id;
     items.splice(index[index.length - 1], 1);
     console.log(items);
-    setLocalStorage(category, items);
+    setLocalStorage(objCategory, items);
     e.target.parentElement.remove();
   }
 });
 
-function displayResults(category) {
-  if (category == "characters") {
+function displayResults(searchCategory) {
+  if (searchCategory == 'characters') {
     displayChar();
-  } else if (category == "encounters") {
+  } else if (searchCategory == 'encounters') {
     displayEncounter();
-  } else if (category == "init") {
+  } else if (searchCategory == 'init') {
     displayInit();
-  } else if (category == "none") {
+  } else if (searchCategory == 'none') {
     displayChar();
     displayEncounter();
     displayInit();
@@ -88,9 +88,9 @@ function displayChar() {
             </div>
             <button class="delete">X</button>
         `;
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     container.innerHTML = HTML;
-    container.classList.add("monster-card");
+    container.classList.add('monster-card');
     container.id = `characters-${i}`;
     i++;
     results.appendChild(container);
@@ -102,7 +102,7 @@ function displayEncounter() {
   encounters.forEach((encounter) => {
     const list = encounter.monsters
       .map((monster) => `<li>${monster}</li>`)
-      .join("");
+      .join('');
     const HTML = `
             <div>
                 <h3>Encounter</h3>
@@ -115,9 +115,9 @@ function displayEncounter() {
             </div>
             <button class="delete">X</button>
         `;
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     container.innerHTML = HTML;
-    container.classList.add("monster-card");
+    container.classList.add('monster-card');
     container.id = `characters-${i}`;
     i++;
     results.appendChild(container);
@@ -129,7 +129,7 @@ function displayInit() {
   initiatives.forEach((initiative) => {
     const list = initiative
       .map((combatant) => {
-        let ac = "";
+        let ac = '';
         if (combatant.ac) {
           ac = `| AC: ${combatant.ac} `;
         }
@@ -137,7 +137,7 @@ function displayInit() {
         <li>Name: ${combatant.name} ${ac}| Init: ${combatant.init}</li>
         `;
       })
-      .join("");
+      .join('');
     const HTML = `
         <div>
             <h3>Initiative</h3>
@@ -147,9 +147,9 @@ function displayInit() {
         </div>
         <button class="delete">X</button>
         `;
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     container.innerHTML = HTML;
-    container.classList.add("monster-card");
+    container.classList.add('monster-card');
     container.id = `characters-${i}`;
     i++;
     results.appendChild(container);
@@ -157,9 +157,9 @@ function displayInit() {
 }
 
 function downloadTextFile(filename, text) {
-  const blob = new Blob([text], { type: "text/plain" });
+  const blob = new Blob([text], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
+  const a = document.createElement('a');
   a.href = url;
   a.download = filename;
   document.body.appendChild(a);
@@ -168,15 +168,15 @@ function downloadTextFile(filename, text) {
   URL.revokeObjectURL(url); // Clean up the URL object
 }
 
-download.addEventListener("click", (e) => {
+download.addEventListener('click', (e) => {
   const data = {
-    characters: getLocalStorage("characters") || [],
-    encounters: getLocalStorage("encounters") || [],
-    initiatives: getLocalStorage("initiatives") || [],
+    characters: getLocalStorage('characters') || [],
+    encounters: getLocalStorage('encounters') || [],
+    initiatives: getLocalStorage('initiatives') || [],
   };
 
   // Turn the object into a formatted JSON string
   const jsonText = JSON.stringify(data, null, 2);
 
-  downloadTextFile("SimplyDnDBookmarks.txt", jsonText);
+  downloadTextFile('SimplyDnDBookmarks.txt', jsonText);
 });
