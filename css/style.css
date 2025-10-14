@@ -59,7 +59,7 @@ html {
 
 #hamburger::before {
   content: "☰";
-  color: white !important;
+  color: var(--navy);
 }
 
 #hamburger.open::before {
